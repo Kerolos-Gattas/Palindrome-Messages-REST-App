@@ -19,8 +19,12 @@
   },
   "homepage": "https://github.com/Kerolos-Gattas/Palindrome-Messages-REST-App#readme",
   "description": "",
-  "devDependencies": {
+  "dependencies": {
     "@types/express": "^4.17.11",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "concurrently": "^6.1.0",
+    "nodemon": "^2.0.7",
+    "typescript": "^4.2.4",
+    "yarn": "^1.22.10"
   }
 }
