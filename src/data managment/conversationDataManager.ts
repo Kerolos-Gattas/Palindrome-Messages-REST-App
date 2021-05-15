@@ -1,7 +1,6 @@
 import Conversation from '../models/conversation';
 import Message from '../models/message';
 import DataManager from './dataManager';
-import isPalindrome from '../utils/palindrome';
 import { readFile, writeFile } from './fileOperations';
 
 export default class ConversationDataManager implements DataManager {
@@ -15,7 +14,8 @@ export default class ConversationDataManager implements DataManager {
     public init = async (): Promise<void> => {
         try {
             const data = await readFile(this.FILE_PATH);
-            this.conversation = JSON.parse(data);
+            const oldConversation: Conversation = JSON.parse(data);
+            this.conversation.updateConversation(oldConversation);
         }
         catch (err) {
             // TODO handle file does not exist error, else throw and log

@@ -7,6 +7,14 @@ export default class Conversation {
         this.messages = messages;
     }
 
+    public updateConversation = (conversation: Conversation): void => {
+        for (var i = 0; i < conversation.messages.length; ++i) {
+            const newMessage = new Message();
+            newMessage.copyMessage(conversation.messages[i]);
+            this.messages.push(newMessage);
+        }
+    }
+
     public getMessage = (id: number): Message => {
         const messageIndex = this.getMessageIndex(id);
         const message = this.messages[messageIndex];
