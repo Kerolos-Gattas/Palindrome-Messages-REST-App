@@ -5,47 +5,36 @@ import isPalindrome from '../utils/palindrome';
 import { readFile, writeFile } from './fileOperations';
 
 export default class ConversationDataManager implements DataManager {
-    private conversationContent: Conversation;
+    private conversation: Conversation;
     private readonly FILE_PATH: string = './data storage/data.json';
+
+    constructor() {
+        this.conversation = new Conversation([]);
+    }
 
     public init = async (): Promise<void> => {
         try {
             const data = await readFile(this.FILE_PATH);
-            this.conversationContent = JSON.parse(data);
+            this.conversation = JSON.parse(data);
         }
         catch (err) {
+            // TODO handle file does not exist error, else throw and log
             console.log(err);
-            this.conversationContent = { messages: [] };
         }
     }
 
-    public getMessage = async (id: number): Promise<Message> => {
-        const messageIndex = this.getMessageIndex(id);
-        if (messageIndex != -1) {
-            const message = this.conversationContent.messages[messageIndex];
-            return message;
-        }
-        else {
-            return Promise.reject('Invalid Id');
-        }
+    public getMessage = (id: number): Message => {
+        const message = this.conversation.getMessage(id);
+        return message;
     }
 
-    public getConversation = async (): Promise<Conversation> => {
-        try {
-            return this.conversationContent;
-        }
-        catch (err) {
-            console.log(err);
-            return Promise.reject('Failed to retrieve conversation');
-        }
+    public getConversation = (): Conversation => {
+        return this.conversation;
     }
 
     public addMessage = async (message: string): Promise<void> => {
         try {
-            const convLength = this.conversationContent.messages.length;
-            const palindrome = isPalindrome(message);
-            const tempMessage: Message = { id: convLength + 1, message: message, palindrome: palindrome };
-            this.conversationContent.messages.push(tempMessage);
+            this.conversation.addMessage(message);
             await this.writeData();
         }
         catch (err) {
@@ -55,50 +44,33 @@ export default class ConversationDataManager implements DataManager {
     }
 
     public updateMessage = async (id: number, newMessage: string): Promise<void> => {
-        const messageIndex = this.getMessageIndex(id);
-        if (messageIndex != -1) {
-            const palindrome = isPalindrome(newMessage);
-            const id = this.conversationContent.messages[messageIndex].id;
-            this.conversationContent.messages[messageIndex] = { id: id, message: newMessage, palindrome: palindrome };
+        try {
+            this.conversation.updateMessage(id, newMessage);
             await this.writeData();
         }
-        else {
-            return Promise.reject('Invalid Id');
+        catch (err) {
+            console.log(err);
+            return Promise.reject('Failed to update message');
         }
     }
 
     public deleteMessage = async (id: number): Promise<void> => {
-        const messageIndex = this.getMessageIndex(id);
-        if (messageIndex != -1) {
-            this.conversationContent.messages.splice(messageIndex, 1);
+        try {
+            this.conversation.deleteMessage(id);
             await this.writeData();
         }
-        else {
-            return Promise.reject('Invalid Id');
+        catch (err) {
+            console.log(err);
+            return Promise.reject('Failed to delete message');
         }
-    }
-
-    private getMessageIndex = (id: number): number => {
-        let index = -1;
-
-        for (let i = 0; i < this.conversationContent.messages.length; ++i) {
-            const message = this.conversationContent.messages[i];
-            if (message.id === id) {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
     }
 
     private writeData = async (): Promise<void> => {
         try {
-            const data = JSON.stringify(this.conversationContent);
+            const data = JSON.stringify(this.conversation);
             await writeFile(this.FILE_PATH, data);
         }
         catch (err) {
-            console.log(err);
             return Promise.reject('Could not write data');
         }
     }
