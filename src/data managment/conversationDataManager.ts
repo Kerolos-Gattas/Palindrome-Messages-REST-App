@@ -78,7 +78,6 @@ export default class ConversationDataManager implements DataManager {
     public deleteMessage = async (id: number): Promise<void> => {
         const messageIndex = this.getMessageIndex(id);
         if (messageIndex != -1) {
-            // Check if new message is palindrome
             this.conversationContent.messages.splice(messageIndex, 1);
             await this.writeData();
             return Promise.resolve();
