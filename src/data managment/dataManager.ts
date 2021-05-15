@@ -2,7 +2,7 @@ import Message from '../models/message';
 import Conversation from '../models/conversation';
 
 export default interface DataManager {
-    init: () => boolean;
+    init: () => Promise<void>;
     getMessage: (id: number) => Promise<Message>;
     getConversation: () => Promise<Conversation>;
     addMessage: (message: string) => Promise<void>;

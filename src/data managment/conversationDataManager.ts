@@ -1,27 +1,21 @@
 import Conversation from '../models/conversation';
 import Message from '../models/message';
 import DataManager from './dataManager';
-import { promises } from 'fs';
 import isPalindrome from '../utils/palindrome';
-import * as fs from 'fs';
+import { readFile, writeFile } from './fileOperations';
 
 export default class ConversationDataManager implements DataManager {
     private conversationContent: Conversation;
     private readonly FILE_PATH: string = './data storage/data.json';
 
-    public init = (): boolean => {
+    public init = async (): Promise<void> => {
         try {
-            if (fs.existsSync(this.FILE_PATH)) {
-                const data = fs.readFileSync(this.FILE_PATH, 'utf8');
-                this.conversationContent = JSON.parse(data);
-            }
-            else {
-                this.conversationContent = { messages: [] };
-            }
+            const data = await readFile(this.FILE_PATH);
+            this.conversationContent = JSON.parse(data);
         }
         catch (err) {
             console.log(err);
-            return false;
+            this.conversationContent = { messages: [] };
         }
     }
 
@@ -29,7 +23,7 @@ export default class ConversationDataManager implements DataManager {
         const messageIndex = this.getMessageIndex(id);
         if (messageIndex != -1) {
             const message = this.conversationContent.messages[messageIndex];
-            return Promise.resolve(message);
+            return message;
         }
         else {
             return Promise.reject('Invalid Id');
@@ -38,7 +32,7 @@ export default class ConversationDataManager implements DataManager {
 
     public getConversation = async (): Promise<Conversation> => {
         try {
-            return Promise.resolve(this.conversationContent);
+            return this.conversationContent;
         }
         catch (err) {
             console.log(err);
@@ -53,7 +47,6 @@ export default class ConversationDataManager implements DataManager {
             const tempMessage: Message = { id: convLength + 1, message: message, palindrome: palindrome };
             this.conversationContent.messages.push(tempMessage);
             await this.writeData();
-            return Promise.resolve();
         }
         catch (err) {
             console.log(err);
@@ -68,7 +61,6 @@ export default class ConversationDataManager implements DataManager {
             const id = this.conversationContent.messages[messageIndex].id;
             this.conversationContent.messages[messageIndex] = { id: id, message: newMessage, palindrome: palindrome };
             await this.writeData();
-            return Promise.resolve();
         }
         else {
             return Promise.reject('Invalid Id');
@@ -80,7 +72,6 @@ export default class ConversationDataManager implements DataManager {
         if (messageIndex != -1) {
             this.conversationContent.messages.splice(messageIndex, 1);
             await this.writeData();
-            return Promise.resolve();
         }
         else {
             return Promise.reject('Invalid Id');
@@ -104,8 +95,7 @@ export default class ConversationDataManager implements DataManager {
     private writeData = async (): Promise<void> => {
         try {
             const data = JSON.stringify(this.conversationContent);
-            await promises.writeFile(this.FILE_PATH, data, 'utf8');
-            return Promise.resolve();
+            await writeFile(this.FILE_PATH, data);
         }
         catch (err) {
             console.log(err);
