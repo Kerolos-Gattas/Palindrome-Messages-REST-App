@@ -2,6 +2,7 @@ import Conversation from '../models/conversation';
 import Message from '../models/message';
 import DataManager from './dataManager';
 import { promises } from 'fs';
+import isPalindrome from '../utils/palindrome';
 import * as fs from 'fs';
 
 export default class ConversationDataManager implements DataManager {
@@ -48,7 +49,8 @@ export default class ConversationDataManager implements DataManager {
     public addMessage = async (message: string): Promise<void> => {
         try {
             const convLength = this.conversationContent.messages.length;
-            const tempMessage: Message = { id: convLength + 1, message: message, palindrome: false };
+            const palindrome = isPalindrome(message);
+            const tempMessage: Message = { id: convLength + 1, message: message, palindrome: palindrome };
             this.conversationContent.messages.push(tempMessage);
             await this.writeData();
             return Promise.resolve();
@@ -62,8 +64,9 @@ export default class ConversationDataManager implements DataManager {
     public updateMessage = async (id: number, newMessage: string): Promise<void> => {
         const messageIndex = this.getMessageIndex(id);
         if (messageIndex != -1) {
-            // Check if new message is palindrome
-            this.conversationContent.messages[messageIndex].message = newMessage;
+            const palindrome = isPalindrome(newMessage);
+            const id = this.conversationContent.messages[messageIndex].id;
+            this.conversationContent.messages[messageIndex] = { id: id, message: newMessage, palindrome: palindrome };
             await this.writeData();
             return Promise.resolve();
         }
