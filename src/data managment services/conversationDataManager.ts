@@ -7,8 +7,8 @@ export default class ConversationDataManager implements DataManager {
     private conversation: Conversation;
     private readonly FILE_PATH: string = './data storage/data.json';
 
-    constructor() {
-        this.conversation = new Conversation([]);
+    constructor(conversation?: Conversation) {
+        this.conversation = conversation || new Conversation([]);
     }
 
     public init = async (): Promise<void> => {

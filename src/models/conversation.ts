@@ -38,6 +38,10 @@ export default class Conversation {
         this.messages.splice(messageIndex, 1);
     }
 
+    public validateMessageId = (id: number): boolean => {
+        return this.getMessageIndex(id) !== -1;
+    }
+
     private getMessageIndex = (id: number): number => {
         let index = -1;
 
