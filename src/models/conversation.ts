@@ -33,7 +33,7 @@ export default class Conversation {
         this.messages[messageIndex].updateMessage(newMessage);
 
     }
-    //TODO why does delete leave a json element behind?
+
     public deleteMessage = (id: number): void => {
         const messageIndex = this.getMessageIndex(id);
         this.messages.splice(messageIndex, 1);
