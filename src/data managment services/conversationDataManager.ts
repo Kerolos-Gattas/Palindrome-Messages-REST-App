@@ -16,6 +16,7 @@ export default class ConversationDataManager implements DataManager {
             const data = await readFile(this.FILE_PATH);
             const oldConversation: Conversation = JSON.parse(data);
             this.conversation.updateMessages(oldConversation);
+            //TODO add conole logs
             console.log('Data intialized: \n' + this.conversation);
         }
         catch (err) {
@@ -33,10 +34,11 @@ export default class ConversationDataManager implements DataManager {
         return this.conversation;
     }
 
-    public addMessage = async (message: string): Promise<void> => {
+    public addMessage = async (message: string): Promise<number> => {
         try {
-            this.conversation.addMessage(message);
+            const id = this.conversation.addMessage(message);
             await this.writeData();
+            return id;
         }
         catch (err) {
             console.log(err);

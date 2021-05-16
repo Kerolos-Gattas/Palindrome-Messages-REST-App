@@ -1,14 +1,14 @@
 import express = require("express");
-import ConversationDataManager from "../data managment services/conversationDataManager";
+import DataManager from "../data managment services/dataManager";
 
 export default class MessageMiddleware {
-    private conversationDataManager: ConversationDataManager;
+    private conversationDataManager: DataManager;
 
-    constructor(conversationDataManager: ConversationDataManager) {
+    constructor(conversationDataManager: DataManager) {
         this.conversationDataManager = conversationDataManager;
     }
 
-    public validateMessageId = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    public validateMessageId = async (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> => {
         const conversation = this.conversationDataManager.getConversation();
         const id = Number(req.params.messageId);
         if (!isNaN(id)) {
@@ -25,7 +25,7 @@ export default class MessageMiddleware {
         }
     }
 
-    public extractMessageId = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    public extractMessageId = async (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> => {
         req.body.id = req.params.messageId;
         next();
     }

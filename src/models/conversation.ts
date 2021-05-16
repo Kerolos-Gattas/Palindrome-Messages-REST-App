@@ -21,10 +21,11 @@ export default class Conversation {
         return message;
     }
 
-    public addMessage = (message: string): void => {
+    public addMessage = (message: string): number => {
         const id = this.messages.length + 1;
         const newMessage = new Message(id, message);
         this.messages.push(newMessage);
+        return id;
     }
 
     public updateMessage = (id: number, newMessage: string): void => {
