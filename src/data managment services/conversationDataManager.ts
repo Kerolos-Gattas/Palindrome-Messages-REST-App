@@ -16,7 +16,7 @@ export default class ConversationDataManager implements DataManager {
         try {
             const data = await readFile(this.FILE_PATH);
             const oldConversation: Conversation = JSON.parse(data);
-            this.conversation.updateMessages(oldConversation);
+            this.conversation.updateConversation(oldConversation);
         }
         catch (err) {
             if (err instanceof FileOperationsErrors) {

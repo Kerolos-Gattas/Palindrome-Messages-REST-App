@@ -7,7 +7,7 @@ export default class Conversation {
         this.messages = messages;
     }
 
-    public updateMessages = (conversation: Conversation): void => {
+    public updateConversation = (conversation: Conversation): void => {
         for (var i = 0; i < conversation.messages.length; ++i) {
             const newMessage = new Message();
             newMessage.copyMessage(conversation.messages[i]);
