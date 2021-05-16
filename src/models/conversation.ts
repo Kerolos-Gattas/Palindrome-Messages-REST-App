@@ -54,10 +54,7 @@ export default class Conversation {
             }
         }
 
-        if (index === -1) {
-            // TODO create error types
-            throw new Error('Invalid id');
-        }
+        // TODO create error types
 
         return index;
     }

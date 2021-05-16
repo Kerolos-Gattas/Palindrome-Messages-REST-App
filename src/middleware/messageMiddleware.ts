@@ -12,6 +12,7 @@ export default class MessageMiddleware implements BaseMiddleware {
     public validateId = async (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> => {
         const conversation = this.conversationDataManager.getConversation();
         const id = Number(req.params.messageId);
+
         if (!isNaN(id)) {
             const validId = conversation.validateMessageId(id);
             if (validId) {
