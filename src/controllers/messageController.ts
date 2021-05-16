@@ -11,7 +11,7 @@ export default class MessageController implements BaseController {
 
     public getDataById = async (req: express.Request, res: express.Response): Promise<void> => {
         try {
-            const id: number = req.body.id;
+            const id = Number(req.body.id);
             const message = this.conversationDataManager.getMessage(id);
             res.status(200).send(message);
         }
