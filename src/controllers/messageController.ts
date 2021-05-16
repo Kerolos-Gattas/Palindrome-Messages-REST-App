@@ -37,6 +37,7 @@ export default class MessageController implements BaseController {
             const message = req.body.message;
             if (!message) {
                 res.status(400).send('Missing message from request body');
+                return;
             }
             const id = await this.conversationDataManager.addMessage(message);
             res.status(201).send({ id: id });
@@ -53,6 +54,7 @@ export default class MessageController implements BaseController {
             const id = Number(req.body.id);
             if (!message) {
                 res.status(400).send('Missing message from request body');
+                return;
             }
             await this.conversationDataManager.updateMessage(id, message);
             res.status(204).send();
