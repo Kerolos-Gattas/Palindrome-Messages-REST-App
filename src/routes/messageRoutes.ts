@@ -16,15 +16,21 @@ export default class MessageRoutes extends BaseRoutes {
 
         this.app
             .route('/message')
-            .post(this.messageController.addData);
+            .post(this.messageMiddleware.validateRequestParams,
+                this.messageController.addData);
 
         this.app.param('messageId', this.messageMiddleware.extractId);
         this.app
             .route('/message/:messageId')
             .all(this.messageMiddleware.validateId)
             .get(this.messageController.getDataById)
-            .put(this.messageController.updateData)
             .delete(this.messageController.deleteData);
+
+        this.app
+            .route('/message/:messageId')
+            .put(this.messageMiddleware.validateId,
+                this.messageMiddleware.validateRequestParams,
+                this.messageController.updateData);
 
         return this.app;
     }

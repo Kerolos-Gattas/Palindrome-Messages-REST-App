@@ -33,6 +33,16 @@ export default class MessageMiddleware implements BaseMiddleware {
         }
     }
 
+    public validateRequestParams = async (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> => {
+        const message = req.body.message;
+        if (!message) {
+            res.status(400).send('Missing message from request body');
+        }
+        else {
+            next();
+        }
+    }
+
     public extractId = async (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> => {
         try {
             req.body.id = req.params.messageId;
