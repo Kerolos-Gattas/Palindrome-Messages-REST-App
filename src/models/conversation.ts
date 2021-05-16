@@ -55,7 +55,6 @@ export default class Conversation {
         }
 
         // TODO create error types
-        // TODO why are errors here not handled
 
         return index;
     }
