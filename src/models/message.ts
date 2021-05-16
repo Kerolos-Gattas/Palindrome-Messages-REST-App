@@ -13,7 +13,7 @@ export default class Message {
         }
     }
 
-    public copyMessage = (messageData: Message) => {
+    public copyMessage = (messageData: Message): void => {
         this.id = messageData.id;
         this.message = messageData.message;
         this.palindrome = messageData.palindrome;
