@@ -2,9 +2,9 @@ import app from './app';
 import MessageController from './controllers/messageController';
 import ConversationDataManager from './data managment services/conversationDataManager';
 import MessageMiddleware from './middleware/messageMiddleware';
-import { BaseRoutes } from './routes/baseRoutes';
 import MessageRoutes from './routes/messageRoutes';
 
+// Initialize application resources
 let appInit = async (): Promise<void> => {
     const conversationDataManager = new ConversationDataManager();
     await conversationDataManager.init();
