@@ -1,8 +1,8 @@
-let isPalindrome = (message: string): boolean => {
+let isPalindrome = (txt: string): boolean => {
     var re = /[\W_]/g;
-    var lowRegMessage = message.toLowerCase().replace(re, '');
-    var reverseMessage = lowRegMessage.split('').reverse().join('');
-    return lowRegMessage === reverseMessage;
+    var lowRegtxt = txt.toLowerCase().replace(re, '');
+    var reversetxt = lowRegtxt.split('').reverse().join('');
+    return lowRegtxt === reversetxt;
 }
 
 export default isPalindrome;
