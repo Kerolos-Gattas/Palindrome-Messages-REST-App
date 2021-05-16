@@ -1,35 +1,30 @@
 import express = require("express");
-import MessageController from "../controllers/messageController";
-import MessageMiddleware from "../middleware/messageMiddleware";
+import BaseController from "../controllers/baseController";
+import BaseMiddleware from "../middleware/baseMiddleware";
 import { BaseRoutes } from "./baseRoutes";
 
 export default class MessageRoutes extends BaseRoutes {
-    private messageMiddleware: MessageMiddleware;
-    private messageController: MessageController;
 
-    constructor(app: express.Application, messageMiddleware: MessageMiddleware, messageController: MessageController) {
-        super(app);
-        this.messageMiddleware = messageMiddleware;
-        this.messageController = messageController;
+    constructor(app: express.Application, messageMiddleware: BaseMiddleware, messageController: BaseController) {
+        super(app, messageMiddleware, messageController);
     }
 
-    public configureRoutes = (): express.Application => {
-
+    public configureRoutes(): express.Application {
         this.app
             .route('/conversation')
-            .get(this.messageController.getConversation);
+            .get(this.messageController.getData);
 
         this.app
             .route('/message')
-            .post(this.messageController.addMessage);
+            .post(this.messageController.addData);
 
-        this.app.param('messageId', this.messageMiddleware.extractMessageId);
+        this.app.param('messageId', this.messageMiddleware.extractId);
         this.app
             .route('/message/:messageId')
-            .all(this.messageMiddleware.validateMessageId)
-            .get(this.messageController.getMessage)
-            .patch(this.messageController.updateMessage)
-            .delete(this.messageController.deleteMessage);
+            .all(this.messageMiddleware.validateId)
+            .get(this.messageController.getDataById)
+            .put(this.messageController.updateData)
+            .delete(this.messageController.deleteData);
 
         return this.app;
     }

@@ -1,14 +1,15 @@
 import express = require("express");
 import DataManager from '../data managment services/dataManager';
+import BaseController from "./baseController";
 
-export default class MessageController {
+export default class MessageController implements BaseController {
     private conversationDataManager: DataManager;
 
     constructor(conversationDataManager: DataManager) {
         this.conversationDataManager = conversationDataManager;
     }
 
-    public getMessage = async (req: express.Request, res: express.Response): Promise<void> => {
+    public getDataById = async (req: express.Request, res: express.Response): Promise<void> => {
         try {
             const id: number = req.body.id;
             const message = this.conversationDataManager.getMessage(id);
@@ -20,7 +21,7 @@ export default class MessageController {
         }
     }
 
-    public getConversation = async (req: express.Request, res: express.Response): Promise<void> => {
+    public getData = async (req: express.Request, res: express.Response): Promise<void> => {
         try {
             const conversation = this.conversationDataManager.getConversation();
             res.status(200).send(conversation);
@@ -31,7 +32,7 @@ export default class MessageController {
         }
     }
 
-    public addMessage = async (req: express.Request, res: express.Response): Promise<void> => {
+    public addData = async (req: express.Request, res: express.Response): Promise<void> => {
         try {
             const message = req.body.message;
             if (!message) {
@@ -46,7 +47,7 @@ export default class MessageController {
         }
     }
 
-    public updateMessage = async (req: express.Request, res: express.Response): Promise<void> => {
+    public updateData = async (req: express.Request, res: express.Response): Promise<void> => {
         try {
             const message = req.body.message;
             const id = req.body.id;
@@ -62,7 +63,7 @@ export default class MessageController {
         }
     }
 
-    public deleteMessage = async (req: express.Request, res: express.Response): Promise<void> => {
+    public deleteData = async (req: express.Request, res: express.Response): Promise<void> => {
         try {
             const id = req.body.id;
             await this.conversationDataManager.deleteMessage(id);

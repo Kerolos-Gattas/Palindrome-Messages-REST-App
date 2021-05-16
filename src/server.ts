@@ -1,4 +1,5 @@
 import app from "./app";
+import appInit from "./appInit";
 
 const server = app.listen(app.get("port"), () => {
     console.log(
@@ -7,5 +8,7 @@ const server = app.listen(app.get("port"), () => {
         app.get("env")
     );
 });
+
+appInit();
 
 export default server;
