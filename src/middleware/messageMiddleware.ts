@@ -10,25 +10,37 @@ export default class MessageMiddleware implements BaseMiddleware {
     }
 
     public validateId = async (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> => {
-        const conversation = this.conversationDataManager.getConversation();
-        const id = Number(req.params.messageId);
+        try {
+            const conversation = this.conversationDataManager.getConversation();
+            const id = Number(req.params.messageId);
 
-        if (!isNaN(id)) {
-            const validId = conversation.validateMessageId(id);
-            if (validId) {
-                next();
+            if (!isNaN(id)) {
+                const validId = conversation.validateMessageId(id);
+                if (validId) {
+                    next();
+                }
+                else {
+                    res.status(400).send({ errors: ['Invalid id'] });
+                }
             }
             else {
-                res.status(400).send({ errors: ['Invalid id'] });
+                res.status(400).send({ errors: ['Id must be a number'] });
             }
         }
-        else {
-            res.status(400).send({ errors: ['Id must be a number'] });
+        catch (err) {
+            console.log(err);
+            res.status(500).send('The server encountered an error');
         }
     }
 
     public extractId = async (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> => {
-        req.body.id = req.params.messageId;
-        next();
+        try {
+            req.body.id = req.params.messageId;
+            next();
+        }
+        catch (err) {
+            console.log(err);
+            res.status(500).send('The server encountered an error');
+        }
     }
 }

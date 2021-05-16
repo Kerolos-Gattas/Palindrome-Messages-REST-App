@@ -33,7 +33,7 @@ export default class Conversation {
         this.messages[messageIndex].updateMessage(newMessage);
 
     }
-    //TODO why does delete leave a json element behind?
+
     public deleteMessage = (id: number): void => {
         const messageIndex = this.getMessageIndex(id);
         this.messages.splice(messageIndex, 1);
@@ -53,9 +53,6 @@ export default class Conversation {
                 break;
             }
         }
-
-        // TODO create error types
-        // TODO why are errors here not handled
 
         return index;
     }
