@@ -50,7 +50,7 @@ export default class MessageController implements BaseController {
     public updateData = async (req: express.Request, res: express.Response): Promise<void> => {
         try {
             const message = req.body.message;
-            const id = req.body.id;
+            const id = Number(req.body.id);
             if (!message) {
                 res.status(400).send('Missing message from request body');
             }
@@ -65,7 +65,7 @@ export default class MessageController implements BaseController {
 
     public deleteData = async (req: express.Request, res: express.Response): Promise<void> => {
         try {
-            const id = req.body.id;
+            const id = Number(req.body.id);
             await this.conversationDataManager.deleteMessage(id);
             res.status(204).send();
         }
