@@ -6,7 +6,7 @@ import { readFile, writeFile } from './fileOperations';
 
 export default class ConversationDataManager implements DataManager {
     private conversation: Conversation;
-    private readonly FILE_PATH: string = './data storage/data.json';
+    private readonly FILE_PATH: string = '../data storage/data.json';
 
     constructor(conversation?: Conversation) {
         this.conversation = conversation || new Conversation([]);
