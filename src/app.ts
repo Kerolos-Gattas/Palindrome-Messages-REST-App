@@ -11,9 +11,9 @@ app.get('/', (req: express.Request, res: express.Response) => {
     res.status(200).send(runningMessage)
 });
 
-// TODO add winston logger
-// TODO Test simultaneous add, update and delete
-// TODO add comments
+//TODO add winston logger
+//TODO Test simultaneous add, update and delete
+//TODO add comments
 
 // export our app
 export default app;

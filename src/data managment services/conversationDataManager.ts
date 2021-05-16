@@ -21,7 +21,7 @@ export default class ConversationDataManager implements DataManager {
             //console.log(this.conversation);
         }
         catch (err) {
-            // TODO handle file does not exist error, else throw and log
+            //TODO handle file does not exist error, else throw and log
             console.log(err);
         }
     }
@@ -44,6 +44,7 @@ export default class ConversationDataManager implements DataManager {
         catch (err) {
             console.log(err);
             //TODO handle reject cases
+            //TODO handle throw cases
             return Promise.reject('Failed to add message');
         }
     }

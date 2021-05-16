@@ -54,8 +54,6 @@ export default class Conversation {
             }
         }
 
-        // TODO create error types
-
         return index;
     }
 }
