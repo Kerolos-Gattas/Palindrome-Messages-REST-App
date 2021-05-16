@@ -3,8 +3,6 @@ import * as chai from "chai";
 import { expect } from 'chai';
 import chaiHttp = require("chai-http");
 
-import "mocha";
-
 chai.use(chaiHttp);
 
 describe("app tests", () => {
