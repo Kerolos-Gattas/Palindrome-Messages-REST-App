@@ -17,7 +17,8 @@ export default class ConversationDataManager implements DataManager {
             const oldConversation: Conversation = JSON.parse(data);
             this.conversation.updateMessages(oldConversation);
             //TODO add conole logs
-            console.log('Data intialized: \n' + this.conversation);
+            //console.log('Data intialized: \n');
+            //console.log(this.conversation);
         }
         catch (err) {
             // TODO handle file does not exist error, else throw and log
@@ -42,6 +43,7 @@ export default class ConversationDataManager implements DataManager {
         }
         catch (err) {
             console.log(err);
+            //TODO handle reject cases
             return Promise.reject('Failed to add message');
         }
     }
