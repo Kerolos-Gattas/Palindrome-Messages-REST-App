@@ -115,3 +115,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 data storage/*
+docs/Cloud-Audition-Project_Nov2020.pdf
