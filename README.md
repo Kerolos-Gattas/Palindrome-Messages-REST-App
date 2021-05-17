@@ -43,8 +43,6 @@ The project is configured with the following `npm` commands:
 
 `npm run test` runs the unit tests. Note currently the unit tests do not cover all files.
 
-
-
 For further testing, there are two postman test suites available under "test\Postman tests". These suites can be imported in postman directly and then you can run all the tests with one click in postman. For more info about how to run the test in postman please refer to the following: https://learning.postman.com/docs/running-collections/intro-to-collection-runs/
 
 Postman suites details:
@@ -59,7 +57,238 @@ Note: both test suites need to be run on a clean server in order to pass the tes
 
 2- Restart the server
 
+# API documentation
+
+
+**Server Running**
+----
+  <This is the base request for the application>
+
+* **URL**
+
+  <http://localhost:3000/>
+
+* **Method:**
+  
+  `GET`
+  
+*  **URL Params**
+ 
+   `None`
+
+* **Success Response:**
+  
+  * **Code:** 200 OK<br />
+    **Content:** `Server running at http://localhost:3000:${port}`
 
 
 
+**List All Messages**
+----
+  <This call will retrieve all messages along with their ids and palindrome>
 
+* **URL**
+
+  <http://localhost:3000/conversation>
+
+* **Method:**
+  
+  `GET`
+  
+*  **URL Params**
+ 
+   `None`
+
+* **Success Response:**
+  
+  * **Code:** 200 OK<br />
+    **Content:** `{"messages": [ {Message 1}, {Message 2}, ... ]}`
+ 
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `The server encountered an error`
+
+
+
+**Get Message By Id**
+----
+  <This API will get the message requested using the id supplied in the params>
+
+* **URL**
+
+  <http://localhost:3000/message/:messageId>
+
+* **Method:**
+  
+  `GET` 
+  
+*  **URL Params**
+
+
+   **Required:**
+ 
+   `messageId=[integer]`
+
+* **Success Response:**
+  
+  * **Code:** 200 OK<br />
+    **Content:** `{ "id": [integer], "message": "[string]", "palindrome": [boolean] }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ errors: ['Invalid id'] }`
+    
+  OR
+  
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ errors: ['Id must be a number'] }`
+
+  OR
+  
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `The server encountered an error`
+    
+* **Sample Call:**
+
+  <http://localhost:3000/message/1> 
+
+
+
+**Create Message**
+----
+  <This API will add a message resource to the list of messages>
+
+* **URL**
+
+  <http://localhost:3000/message>
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+ 
+   `None`
+
+* **Data Params**
+
+  BODY PAYLOAD
+  
+  <{ "message": "Message Content" }>
+
+* **Success Response:**
+  
+  * **Code:** 201 CREATED<br />
+    **Content:** `{ id : [integer] }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `Missing message from request body`
+
+  OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `The server encountered an error`
+
+
+
+**Update Message By Id**
+----
+  <This API updates a specific message using the id supplied in the params>
+
+* **URL**
+
+  <http://localhost:3000/message/:messageId>
+
+* **Method:**
+  
+  `PUT`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `messageId=[integer]`
+
+
+* **Data Params**
+
+  BODY PAYLOAD
+  
+  <{ "message": "Message Content" }>
+
+* **Success Response:**
+  
+  * **Code:** 204 NO CONTENT<br />
+    **Content:** ``
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ errors: ['Invalid id'] }`
+    
+  OR
+  
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ errors: ['Id must be a number'] }`
+
+  OR
+  
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `Missing message from request body`  
+  
+  OR
+  
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `The server encountered an error`
+
+* **Sample Call:**
+
+  <http://localhost:3000/message/1> 
+
+
+
+**Delete Message By Id**
+----
+  <This API deletes a specific message using the id supplied in the params>
+
+* **URL**
+
+  <http://localhost:3000/message/:messageId>
+
+* **Method:**
+  
+  `DELETE`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `messageId=[integer]`
+
+* **Success Response:**
+  
+  * **Code:** 204 NO CONTENT<br />
+    **Content:** ``
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ errors: ['Invalid id'] }`
+    
+  OR
+  
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ errors: ['Id must be a number'] }`
+  
+  OR
+  
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `The server encountered an error`
+
+* **Sample Call:**
+
+  <http://localhost:3000/message/1> 
