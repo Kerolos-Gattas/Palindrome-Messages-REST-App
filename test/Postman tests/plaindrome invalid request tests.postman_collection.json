@@ -28,14 +28,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/message/messageid=1",
+					"raw": "http://localhost:3000/messages/messageid=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"messageid=1"
 					]
 				}
@@ -75,14 +75,14 @@
 					"raw": "{\r\n    \"message\": \"Test update\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/message/messageid=1",
+					"raw": "http://localhost:3000/messages/messageid=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"messageid=1"
 					]
 				}
@@ -112,14 +112,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/message/messageid=1",
+					"raw": "http://localhost:3000/messages/messageid=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"messageid=1"
 					]
 				}
@@ -159,14 +159,14 @@
 					"raw": "{\r\n\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/message",
+					"raw": "http://localhost:3000/messages",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message"
+						"messages"
 					]
 				}
 			},
@@ -205,14 +205,14 @@
 					"raw": "{\r\n    \"message\": \"race car\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/message",
+					"raw": "http://localhost:3000/messages",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message"
+						"messages"
 					]
 				}
 			},
@@ -251,14 +251,14 @@
 					"raw": "{\r\n    \r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/message/1",
+					"raw": "http://localhost:3000/messages/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"1"
 					]
 				}

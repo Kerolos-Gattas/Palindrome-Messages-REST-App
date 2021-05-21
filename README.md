@@ -53,7 +53,7 @@ Postman suites details:
 
 Note: both test suites need to be run on a clean server in order to pass the tests. To clean the server, do the following:
 
-1- Delete JSON data file where the messages info is stored. The default location for that file is under "../data storage/data.json". The path for that file can be changed in the ConversationDataManager class
+1- Delete JSON data file where the messages info is stored. The default location for that file is under "../data storage/data.json". The path for that file can be changed in the MessagesDataManager class
 
 2- Restart the server
 
@@ -89,7 +89,7 @@ Note: both test suites need to be run on a clean server in order to pass the tes
 
 * **URL**
 
-  <http://localhost:3000/conversation>
+  <http://localhost:3000/messages>
 
 * **Method:**
   

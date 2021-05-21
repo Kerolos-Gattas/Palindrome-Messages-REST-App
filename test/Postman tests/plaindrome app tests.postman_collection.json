@@ -42,7 +42,7 @@
 			"response": []
 		},
 		{
-			"name": "get empty conversation",
+			"name": "get empty messages",
 			"event": [
 				{
 					"listen": "test",
@@ -64,14 +64,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/conversation",
+					"raw": "http://localhost:3000/messages",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"conversation"
+						"messages"
 					]
 				}
 			},
@@ -100,14 +100,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/message/5",
+					"raw": "http://localhost:3000/messages/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"5"
 					]
 				}
@@ -147,14 +147,14 @@
 					"raw": "{\r\n    \"message\": \"Test update\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/message/2",
+					"raw": "http://localhost:3000/messages/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"2"
 					]
 				}
@@ -184,15 +184,15 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/message/1",
+					"raw": "http://localhost:3000/messages/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
-						"1"
+						"messages",
+						"5"
 					]
 				}
 			},
@@ -231,14 +231,14 @@
 					"raw": "{\r\n    \"message\": \"race car\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/message",
+					"raw": "http://localhost:3000/messages",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message"
+						"messages"
 					]
 				}
 			},
@@ -277,14 +277,14 @@
 					"raw": "{\r\n    \"message\": \"not a palindrome\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/message",
+					"raw": "http://localhost:3000/messages",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message"
+						"messages"
 					]
 				}
 			},
@@ -323,14 +323,14 @@
 					"raw": "{\r\n    \"message\": \"A man, a plan, a canal. Panama\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/message",
+					"raw": "http://localhost:3000/messages",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message"
+						"messages"
 					]
 				}
 			},
@@ -369,14 +369,14 @@
 					"raw": "{\r\n    \"message\": \"never odd or even\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/message",
+					"raw": "http://localhost:3000/messages",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message"
+						"messages"
 					]
 				}
 			},
@@ -415,14 +415,14 @@
 					"raw": "{\r\n    \"message\": \"0_0 (: /- :) 0–0\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/message",
+					"raw": "http://localhost:3000/messages",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message"
+						"messages"
 					]
 				}
 			},
@@ -461,21 +461,21 @@
 					"raw": "{\r\n    \"message\": \"1 eye for of 1 eye.\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/message",
+					"raw": "http://localhost:3000/messages",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message"
+						"messages"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "get conversation",
+			"name": "get messages",
 			"event": [
 				{
 					"listen": "test",
@@ -497,14 +497,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/conversation",
+					"raw": "http://localhost:3000/messages",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"conversation"
+						"messages"
 					]
 				}
 			},
@@ -533,14 +533,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/message/1",
+					"raw": "http://localhost:3000/messages/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"1"
 					]
 				}
@@ -570,14 +570,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/message/6",
+					"raw": "http://localhost:3000/messages/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"6"
 					]
 				}
@@ -617,14 +617,14 @@
 					"raw": "{\r\n    \"message\": \"Test update\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/message/1",
+					"raw": "http://localhost:3000/messages/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"1"
 					]
 				}
@@ -654,14 +654,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/message/1",
+					"raw": "http://localhost:3000/messages/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"1"
 					]
 				}
@@ -691,14 +691,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/message/1",
+					"raw": "http://localhost:3000/messages/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"1"
 					]
 				}
@@ -728,14 +728,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/message/1",
+					"raw": "http://localhost:3000/messages/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"1"
 					]
 				}
@@ -765,14 +765,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/message/2",
+					"raw": "http://localhost:3000/messages/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"message",
+						"messages",
 						"2"
 					]
 				}
@@ -780,7 +780,7 @@
 			"response": []
 		},
 		{
-			"name": "get conversation",
+			"name": "get messages",
 			"event": [
 				{
 					"listen": "test",
@@ -802,14 +802,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/conversation",
+					"raw": "http://localhost:3000/messages",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"conversation"
+						"messages"
 					]
 				}
 			},

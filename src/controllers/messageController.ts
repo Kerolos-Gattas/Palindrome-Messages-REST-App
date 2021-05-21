@@ -3,16 +3,16 @@ import DataManager from '../data managment services/dataManager';
 import BaseController from "./baseController";
 
 export default class MessageController implements BaseController {
-    private conversationDataManager: DataManager;
+    private messagesDataManager: DataManager;
 
-    constructor(conversationDataManager: DataManager) {
-        this.conversationDataManager = conversationDataManager;
+    constructor(messagesDataManager: DataManager) {
+        this.messagesDataManager = messagesDataManager;
     }
 
     public getDataById = async (req: express.Request, res: express.Response): Promise<void> => {
         try {
             const id = Number(req.body.id);
-            const message = this.conversationDataManager.getMessage(id);
+            const message = this.messagesDataManager.getMessage(id);
             res.status(200).send(message);
         }
         catch (err) {
@@ -23,8 +23,8 @@ export default class MessageController implements BaseController {
 
     public getData = async (req: express.Request, res: express.Response): Promise<void> => {
         try {
-            const conversation = this.conversationDataManager.getConversation();
-            res.status(200).send(conversation);
+            const messages = this.messagesDataManager.getMessages();
+            res.status(200).send(messages);
         }
         catch (err) {
             console.log(err);
@@ -35,7 +35,7 @@ export default class MessageController implements BaseController {
     public addData = async (req: express.Request, res: express.Response): Promise<void> => {
         try {
             const message = req.body.message;
-            const id = await this.conversationDataManager.addMessage(message);
+            const id = await this.messagesDataManager.addMessage(message);
             res.status(201).send({ id: id });
         }
         catch (err) {
@@ -48,7 +48,7 @@ export default class MessageController implements BaseController {
         try {
             const message = req.body.message;
             const id = Number(req.body.id);
-            await this.conversationDataManager.updateMessage(id, message);
+            await this.messagesDataManager.updateMessage(id, message);
             res.status(204).send();
         }
         catch (err) {
@@ -60,7 +60,7 @@ export default class MessageController implements BaseController {
     public deleteData = async (req: express.Request, res: express.Response): Promise<void> => {
         try {
             const id = Number(req.body.id);
-            await this.conversationDataManager.deleteMessage(id);
+            await this.messagesDataManager.deleteMessage(id);
             res.status(204).send();
         }
         catch (err) {

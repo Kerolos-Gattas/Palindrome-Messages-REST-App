@@ -3,19 +3,19 @@ import DataManager from "../data managment services/dataManager";
 import BaseMiddleware from "./baseMiddleware";
 
 export default class MessageMiddleware implements BaseMiddleware {
-    private conversationDataManager: DataManager;
+    private messagesDataManager: DataManager;
 
-    constructor(conversationDataManager: DataManager) {
-        this.conversationDataManager = conversationDataManager;
+    constructor(messagesDataManager: DataManager) {
+        this.messagesDataManager = messagesDataManager;
     }
 
     public validateId = async (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> => {
         try {
-            const conversation = this.conversationDataManager.getConversation();
+            const messages = this.messagesDataManager.getMessages();
             const id = Number(req.params.messageId);
 
             if (!isNaN(id)) {
-                const validId = conversation.validateMessageId(id);
+                const validId = messages.validateMessageId(id);
                 if (validId) {
                     next();
                 }

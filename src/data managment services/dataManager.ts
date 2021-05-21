@@ -1,10 +1,10 @@
 import Message from '../models/message';
-import Conversation from '../models/conversation';
+import Messages from '../models/messages';
 
 export default interface DataManager {
     init: () => Promise<void>;
     getMessage: (id: number) => Message;
-    getConversation: () => Conversation;
+    getMessages: () => Messages;
     addMessage: (message: string) => Promise<number>;
     updateMessage: (id: number, newMessage: string) => Promise<void>;
     deleteMessage: (id: number) => Promise<void>;

@@ -1,16 +1,16 @@
 import Message from './message';
 
-export default class Conversation {
+export default class Messages {
     private messages: Message[];
 
     constructor(messages: Message[]) {
         this.messages = messages;
     }
 
-    public updateConversation = (conversation: Conversation): void => {
-        for (var i = 0; i < conversation.messages.length; ++i) {
+    public updateMessages = (messages: Messages): void => {
+        for (var i = 0; i < messages.messages.length; ++i) {
             const newMessage = new Message();
-            newMessage.copyMessage(conversation.messages[i]);
+            newMessage.copyMessage(messages.messages[i]);
             this.messages.push(newMessage);
         }
     }
